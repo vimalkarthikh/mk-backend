@@ -22,7 +22,7 @@ const forgotPassword = async (req, res) => {
     await user.save();
     
     //Send email with reset token  
-     const resetUrl = `http://localhost:5173/fp/reset/${resetToken}`;
+     const resetUrl = `https://cape-markdown.netlify.app//fp/reset/${resetToken}`;
     var transporter = createTransport({
         service: 'gmail',
         secure: true,
@@ -35,8 +35,8 @@ const forgotPassword = async (req, res) => {
     var mailOptions = {
         from: 'vimalkarthik315@gmail.com',
         to: email,
-        subject: "Reset Password",
-        html:`<h1>Reset Password</h1><h1>This Link expires in 2 hours</h1><h2>Click on the link to reset your password</h2><h3>${resetUrl}</h3>`
+        subject: "Markdown Application Reset Password",
+        html:`<h1>Click the Link to Reset Password</h1><h2>This Link expires in 2 hours</h2><h2>Click on the link to reset your password</h2><h3>${resetUrl}</h3>`
     };
 
     await transporter.sendMail(mailOptions, function (error, info) {
